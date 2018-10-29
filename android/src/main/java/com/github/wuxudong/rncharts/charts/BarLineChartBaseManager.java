@@ -68,6 +68,13 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
         }
     }
 
+    @Override
+    public void setXAxis(Chart chart, ReadableMap propMap) {
+        super.setXAxis(chart, propMap);
+        BarLineChartBase barLineChart = (BarLineChartBase) chart;
+        barLineChart.setXAxisRenderer(new CustomXAxisRenderer(barLineChart.getViewPortHandler(), barLineChart.getXAxis(), barLineChart.getTransformer(YAxis.AxisDependency.LEFT)));
+    }
+
     @ReactProp(name = "drawGridBackground")
     public void setDrawGridBackground(BarLineChartBase chart, boolean enabled) {
         chart.setDrawGridBackground(enabled);
