@@ -23,6 +23,7 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.formatter.LargeValueFormatter;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
+import com.github.wuxudong.rncharts.charts.tpc.FaultTimePointValueFormatter;
 import com.github.wuxudong.rncharts.data.DataExtract;
 import com.github.wuxudong.rncharts.markers.RNRectangleMarkerView;
 import com.github.wuxudong.rncharts.utils.BridgeUtils;
@@ -444,6 +445,8 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
                     timeUnit = TimeUnit.valueOf(propMap.getString("timeUnit").toUpperCase());
                 }
                 axis.setValueFormatter(new DateFormatter(valueFormatterPattern, since, timeUnit));
+            } else if ("tcpFaultTimePoint".equals(valueFormatter)) {
+                axis.setValueFormatter(new FaultTimePointValueFormatter());
             } else {
                 axis.setValueFormatter(new CustomFormatter(valueFormatter));
             }
